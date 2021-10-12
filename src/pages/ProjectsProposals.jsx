@@ -199,7 +199,7 @@ const ProjectProposal = () => {
             </Card>
               {
                 updates && (<>
-                  <Divider orientation='left'>{proposals.names}</Divider>
+                  <Divider orientation='left'>Updates ::</Divider>
                   <ProjectProgress progress={updates} company={company}/>
                 </>)
               }
