@@ -10,10 +10,8 @@ import Welcome from './pages/Welcome';
 
 function App() {
 
-  
-
   return (
-    <div className="App">
+    <div style={{width: '1000px', margin: 'auto'}}>
        <Router>
          <div>
           <Route path="/" exact component={Loginpage} />
