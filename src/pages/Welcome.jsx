@@ -3,6 +3,7 @@ import { Collapse, Divider } from 'antd';
 
 import CreateProposal from '../components/CreateProposal';
 import Proposal from '../components/Proposal';
+import Navigation from '../components/Navigation';
 
 const Welcome = () => {
 
@@ -60,6 +61,8 @@ const callback = (key) => {
 
     return (
         <>
+        <Navigation />
+
         <h1>Open a project proposal</h1>
         <Divider />
         <CreateProposal />

@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { List, Card, Divider, Avatar } from 'antd';
 import ProjectProgress from '../components/ProjectProgress';
+import Navigation from '../components/Navigation';
 
 const data = [
   {
@@ -147,6 +148,7 @@ const ProjectProposal = () => {
 
     return (
         <>
+        <Navigation />
         <h1>Project Proposals</h1>
             <Divider />
             <List

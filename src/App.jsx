@@ -1,20 +1,23 @@
 import {
   BrowserRouter as Router,
   Route,
-  RouteComponentProps,
+  useHistory,
 } from "react-router-dom";
 
-import Navigation from './components/Navigation';
+import Loginpage from "./pages/LoginPage";
 import ProjectProposal from './pages/ProjectsProposals';
 import Welcome from './pages/Welcome';
 
 function App() {
+
+  
+
   return (
     <div className="App">
        <Router>
          <div>
-         <Navigation />
-          <Route path="/" exact component={Welcome} />
+          <Route path="/" exact component={Loginpage} />
+          <Route path="/welcome" exact component={Welcome} />
           <Route path="/proposals" exact component={ProjectProposal}/>
          </div>
        </Router>
