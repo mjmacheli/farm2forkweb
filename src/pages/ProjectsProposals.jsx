@@ -1,73 +1,7 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef  } from 'react';
 import { List, Card, Divider, Avatar } from 'antd';
 import ProjectProgress from '../components/ProjectProgress';
 import Navigation from '../components/Navigation';
-
-const data = [
-  {
-    title: 'Project 1',
-    description: " 1 Ant Design, a design language for background applications, is refined by Ant UED Team",
-    companies: ["Company 1", "Company 2", "Company 3", "Company 4", "Company 5", "Company 6"]
-  },
-  {
-    title: 'Project 2',
-    description: " 2 Ant Design, a design language for background applications, is refined by Ant UED Team",
-    companies: ["Company 1", "Company 2", "Company 3", "Company 4", "Company 5", "Company 6"]
-  },
-  {
-    title: 'Project 3',
-    description: " 3 Ant Design, a design language for background applications, is refined by Ant UED Team",
-    companies: ["Company 1", "Company 2", "Company 3", "Company 4", "Company 5", "Company 6"]
-  },
-  {
-    title: 'Project 4',
-    description: " 4 Ant Design, a design language for background applications, is refined by Ant UED Team",
-    companies: ["Company 1", "Company 2", "Company 3", "Company 4", "Company 5", "Company 6"]
-  }
-];
-
-const progress = [
-    {
-      title: 'progress 1',
-      img: 'img',
-      description: '4 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 2',
-      img: 'img',
-      description: '2 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 3',
-      img: 'img',
-      description: '3 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 4',
-      img: 'img',
-      description: '5 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 1',
-      img: 'img',
-      description: '2 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 2',
-      img: 'img',
-      description: '4 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 3',
-      img: 'img',
-      description: '4 Ant Design, a design language for background applications, is refined by'
-    },
-    {
-      title: 'Company 4',
-      img: 'img',
-      description: '4 Ant Design, a design language for background applications, is refined by'
-    },
-  ];
 
 const ProjectProposal = () => {
 
@@ -103,12 +37,15 @@ const ProjectProposal = () => {
     });
 
     const fproj = await response.json();
-    console.log(' fp ', fproj)
-    getFarmProjectsUpdates(1)
+
+    let v = fproj.find((elem) => elem.farmId === id)
+
+    
+    getFarmProjectsUpdates(v.id)
     },[proposals, setProposals]);
 
   const getProjectsUsers = useCallback(async (id) => {
-    let url = `https://foodxchange.herokuapp.com/projects/get-users-in-proj/${1}`;
+    let url = `https://foodxchange.herokuapp.com/projects/get-users-in-proj/${id}`;
     const response = await fetch(url, {
         method: "GET",
         mode: "cors",
@@ -147,7 +84,7 @@ const ProjectProposal = () => {
     },[])
 
     return (
-        <>
+        < >
         <Navigation />
         <h1>Project Proposals</h1>
             <Divider />
@@ -157,6 +94,7 @@ const ProjectProposal = () => {
                 renderItem={item => (
                 <List.Item onClick={(e) => {
                   e.preventDefault()
+                  window.scroll(0, 9000, 'smooth')
                   getProjectsUsers(item.id)
                   setProject(item)}}>
                     <List.Item.Meta
@@ -166,7 +104,7 @@ const ProjectProposal = () => {
                 </List.Item>
                 )}
             />
-            <Divider />
+            <Divider/>
             {
               project && (
                 <>
@@ -208,7 +146,7 @@ const ProjectProposal = () => {
                 </>
               )
             }
-        </>
+        </ >
 
     )
 }

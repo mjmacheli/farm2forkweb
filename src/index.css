@@ -1,5 +1,8 @@
 @import '~antd/dist/antd.css';
 
+* {
+    scroll-behavior: smooth;
+}
 .menu-ul {
     display: flex;
 }

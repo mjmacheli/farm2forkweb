@@ -1,55 +1,39 @@
 import { useEffect, useCallback, useState } from 'react';
 import { List, Avatar } from 'antd';
+import moment from 'moment'
 
-const Proposal = ({data}) => {
+const Proposal = ({data, index, test}) => {
   const [proposals, setProposals] = useState([])
 
+  const getProjectsUsers = useCallback(async (id) => {
+    let url = `https://foodxchange.herokuapp.com/projects/get-users-in-proj/${id}`;
+    const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+        "Content-Type": "application/json",
+        },
+    });
 
-  // const getProjects = useCallback(async () => {
-  //   let url = `https://foodxchange.herokuapp.com/projects/get-users-in-proj/${id}`;
-  //   const response = await fetch(url, {
-  //       method: "GET",
-  //       mode: "cors",
-  //       headers: {
-  //       "Content-Type": "application/json",
-  //       },
-  //   });
+    const proj = await response.json();
 
-  //   const proj = await response.json();
+    setProposals(proj)
+    },[]);
 
-  //   console.log('rettt ', proj)
-  //   setProposals(proj)
-  //   },[setProposals, proposals]);
-
-  // useEffect(() => {
-  //   getProjects()
-  // },[])
-
-    // const data = [
-    //     {
-    //       title: 'Project Progress on user 1',
-    //     },
-    //     {
-    //       title: 'Project Progress on user 2',
-    //     },
-    //     {
-    //       title: 'Project Progress on user 3',
-    //     },
-    //     {
-    //       title: 'Project Progress on user 4',
-    //     },
-    //   ];
+  useEffect(() => {
+    getProjectsUsers(index)
+  },[index])
 
     return (
 
         <List
             itemLayout="horizontal"
-            dataSource={data}
+            dataSource={proposals}
             renderItem={item => (
             <List.Item>
                 <List.Item.Meta
-                    title={<a href="https://ant.design">{item.names}</a>}
-                    description={`Partner since ${item.createdAt}`}
+                    title={item.names}
+                    description={`Partner since ${moment(item.createdAt).toString()}`}
                 />
             </List.Item>
             )}

@@ -3,10 +3,12 @@ import { Link } from "react-router-dom"
 const Navigation = () => {
 
     return (
-        <ul className='menu-ul'>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/proposals'>Proposals</Link></li>
-        </ul>
+        <div style={{backgroundColor: 'blue', padding: '2rem', }}>
+            <ul className='menu-ul'>
+                <li ><Link to='/'  style={{color: 'white', fontWeight: '700'}} >Home</Link></li>
+                <li><Link  style={{color: 'white', fontWeight: '700'}}  to='/proposals'>Proposals</Link></li>
+            </ul>
+        </div>
     )
 }
 
