@@ -26,8 +26,9 @@ const ProjectProgress = ({progress}) => {
         {
             post && <Card
                 hoverable
-                cover={<img alt="example" src={post.img} />}
+                cover={<img alt="example" src={`data:image/png;base64,${post.img}`} />}
             >
+                {console.log('dd ', post.img)}
                 <Meta title={post.title} description={post.update} />
             </Card>
         }
